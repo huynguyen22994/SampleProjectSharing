@@ -1,20 +1,10 @@
 const mongoose = require('mongoose');
 const config = require('../config/config');
 const User = require('./models/User');
-mongoose.connect(config.mongoString, {useNewUrlParser: true});
+mongoose.connect(config.mongoString, {useNewUrlParser: true}); // mongodb://localhost:27017/sampleDB
   
 let Models = {
-    User: mongoose.model('Users', User)
+    User: User.trigger(mongoose)
 };
 
-let newUser = new Models.User({
-    firstName: 'Huy',
-    lastName: 'Nguyen',
-    age: 24
-});
-
-newUser.save().then(() => {
-    console.log('save success');
-})
-
-module.exports.Models = Models;
+module.exports = Models;

@@ -14,5 +14,11 @@ let User = new Schema({
         required: true
     }
 });
+// mongoose.model('Veu', User);
+let trigger = (mongoose) => {
+    return mongoose.model('Users', User);
+}
 
-module.exports = User;
+module.exports = {
+    trigger: trigger
+};
